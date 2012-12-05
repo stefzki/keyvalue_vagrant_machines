@@ -1,0 +1,6 @@
+
+simple_redis/Vagrantfile~
+
+*.pp~
+
+simple_riak/Vagrantfile~
