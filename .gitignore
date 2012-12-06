@@ -4,3 +4,9 @@ simple_redis/Vagrantfile~
 *.pp~
 
 simple_riak/Vagrantfile~
+
+distributed_riak/Vagrantfile~
+
+*.erb~
+
+distributed_riak/riak.deb
