@@ -33,15 +33,22 @@ exec { 'install':
 	require => Exec['wget'],
 }
 
-file { '/etc/riak/app.config':
-	source  => '/vagrant/manifests/app.config',
+exec { 'hostname':
+	command => 'sed -i "s/127.0.0.1/`hostname --long`/" /etc/riak/vm.args',
+	path    => '/usr/local/bin/:/bin/:/usr/bin/:/usr/sbin/:/sbin/',
+	require => Exec['install'],
+}
+
+exec { 'allNetworks':
+	command => 'sed -i "s/127.0.0.1/0.0.0.0/" /etc/riak/app.config',
+	path    => '/usr/local/bin/:/bin/:/usr/bin/:/usr/sbin/:/sbin/',
 	require => Exec['install'],
 }
 
 exec { 'startriak':
 	command => '/etc/init.d/riak start',
 	path    => '/usr/local/bin/:/bin/:/usr/bin/:/usr/sbin/:/sbin/',
-	require => File['/etc/riak/app.config'],
+	require => Exec['hostname','allNetworks'],
 }
 
 #whyever this is not working
