@@ -13,9 +13,10 @@ Vagrant::Config.run do |config|
 	  config.vm.define name do |riak| 
 	    riak.vm.box = "precise64"
 	    riak.vm.box_url = "http://files.vagrantup.com/precise64.box"
-	    riak.vm.network :hostonly, opts[:network]
-#	    riak.vm.network :bridged
-	    riak.vm.provision :puppet, :facter => { "riak_name" => "riak@#{opts[:network]}", "riak_ip" => "#{opts[:network]}" }  do |puppet|
+#	    riak.vm.network :hostonly, opts[:network]
+	    riak.vm.network :bridged
+#	    riak.vm.provision :puppet, :facter => { "riak_name" => "riak@#{opts[:network]}", "riak_ip" => "#{opts[:network]}" }  do |puppet|
+	    riak.vm.provision :puppet do |puppet|
 	      puppet.manifests_path = "manifests"
 	      puppet.manifest_file  = "riak.pp"
 	    end

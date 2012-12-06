@@ -2,7 +2,7 @@
 <%if @riak_name %>
 -name <%= @riak_name %>
 <%else%>
--name <%= @ipaddress_eth1 %>
+-name riak@<%= @ipaddress_eth1 %>
 <%end%>
 
 ## Cookie for distributed erlang.  All nodes in the same cluster

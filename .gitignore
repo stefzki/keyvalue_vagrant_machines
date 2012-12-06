@@ -10,3 +10,5 @@ distributed_riak/Vagrantfile~
 *.erb~
 
 distributed_riak/riak.deb
+
+simple_riak/riak.deb
