@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-
+  config.vm.customize ["modifyvm", :id, "--memory", 768]
+  
   config.vm.define :riak01 do |riak01| 
     riak01.vm.box = "precise64"
     riak01.vm.box_url = "http://files.vagrantup.com/precise64.box"

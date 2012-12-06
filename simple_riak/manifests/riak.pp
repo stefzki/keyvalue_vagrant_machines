@@ -33,10 +33,15 @@ exec { 'install':
 	require => Exec['wget'],
 }
 
+file { '/etc/riak/app.config':
+	source  => '/vagrant/manifests/app.config',
+	require => Exec['install'],
+}
+
 exec { 'startriak':
 	command => '/etc/init.d/riak start',
 	path    => '/usr/local/bin/:/bin/:/usr/bin/:/usr/sbin/:/sbin/',
-	require => Exec['install'],
+	require => File['/etc/riak/app.config'],
 }
 
 #whyever this is not working

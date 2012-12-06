@@ -34,7 +34,7 @@ exec { 'install':
 }
 
 file { '/etc/riak/app.config':
-	source  => '/vagrant/manifests/app.conf',
+	source  => '/vagrant/manifests/app.config',
 	require => Exec['install'],
 }
 
