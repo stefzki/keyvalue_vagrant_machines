@@ -3,13 +3,14 @@
 
 Vagrant::Config.run do |config|
 
-  config.vm.define :riak01 do |namenode| 
-    namenode.vm.box = "precise64"
-    namenode.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.define :riak01 do |riak01| 
+    riak01.vm.box = "precise64"
+    riak01.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
-    namenode.vm.network :hostonly, "12.0.0.23"    
-    namenode.vm.host_name = "riak01"
-    namenode.vm.provision :puppet do |puppet|
+#    riak01.vm.network :hostonly, "12.0.0.23"    
+    riak01.vm.network :bridged
+    riak01.vm.host_name = "riak01"
+    riak01.vm.provision :puppet do |puppet|
       puppet.manifests_path = "manifests"
       puppet.manifest_file  = "riak.pp"
     end
