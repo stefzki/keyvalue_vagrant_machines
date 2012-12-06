@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.customize ["modifyvm", :id, "--memory", 768]
+  
+  config.vm.define :riak01 do |riak01| 
+    riak01.vm.box = "precise64"
+    riak01.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+#    riak01.vm.network :hostonly, "12.0.0.23"    
+    riak01.vm.network :bridged
+    riak01.vm.host_name = "riak01"
+    riak01.vm.provision :puppet do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.manifest_file  = "riak.pp"
+    end
+  end
+
+ config.vm.define :riak02 do |riak02| 
+    riak02.vm.box = "precise64"
+    riak02.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+#    riak02.vm.network :hostonly, "12.0.0.24"    
+    riak02.vm.network :bridged
+    riak02.vm.host_name = "riak02"
+    riak02.vm.provision :puppet do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.manifest_file  = "riak.pp"
+    end
+  end
+  
+end
