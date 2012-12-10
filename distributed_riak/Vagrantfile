@@ -7,14 +7,17 @@ Vagrant::Config.run do |config|
   servers = {
     :riak01 => {:network => "12.0.0.20"},
     :riak02 => {:network => "12.0.0.21"},
+    :riak03 => {:network => "12.0.0.22"},
   }
 
   servers.each do |name, opts|
 	  config.vm.define name do |riak| 
 	    riak.vm.box = "precise64"
 	    riak.vm.box_url = "http://files.vagrantup.com/precise64.box"
+# switch to hostonly, if you want to use it on your own machine only
 #	    riak.vm.network :hostonly, opts[:network]
 	    riak.vm.network :bridged
+# if hostonly mode is used, please enable facter 
 #	    riak.vm.provision :puppet, :facter => { "riak_name" => "riak@#{opts[:network]}", "riak_ip" => "#{opts[:network]}" }  do |puppet|
 	    riak.vm.provision :puppet do |puppet|
 	      puppet.manifests_path = "manifests"
