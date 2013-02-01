@@ -1,4 +1,4 @@
-# SQL Vagrant definitions
+# Key-Value Store Vagrant definitions
 
 
 ## Purpose
@@ -11,24 +11,22 @@ Please follow the install instructions at http://vagrantup.com/. Use the latest 
 
 ## The machines
 
-### simple-mysql
+### simple-redis
 
-This is a simple one machine MySQL setup. It uses a standard Ubuntu base-box and installs MySQL via puppet. Furthermore MySQL will be configured to run on 0.0.0.0 and a test database (called evaluation) with read and write access for root will be created.
+This is a simple one machine Redis setup. It uses a standard Ubuntu base-box and installs Redis via puppet. Furthermore MySQL will be configured to run on 0.0.0.0 and a test database (called evaluation) with read and write access for root will be created.
 
 Usage:
 ``` 
-cd simple-mysql
+cd simple-redis
 vagrant up
 ```
 
-After this you can access MySQL by calling your commandline mysql client:
+After this you can access Redis e.g. via https://github.com/xetorthio/jedis:
 
 ```
 mysql --host=mysql01.local -u root
 ```
 
-or use your preferred MySQL client.
-
 To shut down the vagrant images use:
 
 ```
@@ -40,17 +38,17 @@ or
 vagrant destroy
 ```
 
-### simple-postresql
+### simple-riak
 
-This is a simple one machine Postresql setup. It uses a standard Ubuntu base-box and installs Postresql via puppet. Furthermore Postresql will be configured to run on 0.0.0.0 and a test database with read and write access for root will be created.
+This is a simple one machine Riak setup. It uses a standard Ubuntu base-box and installs Riak via puppet. Furthermore Riak will be configured to run on 0.0.0.0.
 
 Usage:
 ``` 
-cd simple-postgresql
+cd simple-riak
 vagrant up
 ```
 
-After this you can access Postgresql with your preferred SQL client on host postgresql01.local.
+After this you can verify that Riak is running by opening http://riak01.local:8098/riak/test.
 
 To shut down the vagrant images use:
 
@@ -62,6 +60,10 @@ or
 ```
 vagrant destroy
 ```
+
+### distributed-riak
+
+This is work in progress - the puppet script is not ready yet.
 
 ## Evaluation proposal
 
