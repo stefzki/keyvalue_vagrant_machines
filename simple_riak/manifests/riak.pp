@@ -1,9 +1,12 @@
 # -*- mode: ruby -*-
 
+package { 'vim':
+	ensure => present,
+}
+
 package { 'libnss-mdns':
 	ensure  => present,
 }
-
 
 group { 'puppet':
 	ensure => present,

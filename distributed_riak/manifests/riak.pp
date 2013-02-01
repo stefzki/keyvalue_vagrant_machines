@@ -4,6 +4,9 @@ package { 'libnss-mdns':
 	ensure  => present,
 }
 
+package { 'vim':
+	ensure => present,
+}
 
 group { 'puppet':
 	ensure => present,
